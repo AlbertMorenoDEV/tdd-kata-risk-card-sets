@@ -1,0 +1,22 @@
+{
+  "name": "albertmoreno/tdd-kata-risk-card-sets",
+  "authors": [
+    {
+      "name": "Albert Moreno",
+      "email": "albert.moreno.dev@gmail.com"
+    }
+  ],
+  "type": "Project",
+  "autoload": {
+    "psr-4": {
+      "Kata\\": "src/",
+      "Tests\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.0"
+  },
+  "license": "",
+  "minimum-stability": "dev",
+  "require": {}
+}
