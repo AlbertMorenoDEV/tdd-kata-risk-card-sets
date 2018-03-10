@@ -93,4 +93,48 @@ class KataTest extends TestCase
 
         $this->assertFalse($response);
     }
+
+    /**
+     * @test
+     * @dataProvider validCollections
+     */
+    public function shouldReturnTrue(array $cards): void
+    {
+        $kata = new Kata();
+
+        $response = $kata->validate($cards);
+
+        $this->assertTrue($response);
+    }
+
+    public function validCollections(): array
+    {
+        return [
+            [['S', 'C', 'H', 'H', 'C']],
+            [['S', 'C', 'H', 'C']],
+            [['J', 'C', 'H', 'C']],
+            [['J', 'H', 'C', 'C']],
+        ];
+    }
+
+    /**
+     * @test
+     * @dataProvider invalidCollections
+     */
+    public function shouldReturnFalse(array $cards): void
+    {
+        $kata = new Kata();
+
+        $response = $kata->validate($cards);
+
+        $this->assertFalse($response);
+    }
+
+    public function invalidCollections(): array
+    {
+        return [
+            [['H', 'H', 'C', 'C']],
+            [['S', 'C', 'S', 'C']],
+        ];
+    }
 }
