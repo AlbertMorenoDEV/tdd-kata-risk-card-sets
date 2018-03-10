@@ -22,8 +22,9 @@ class KataTest extends TestCase
     public function shouldReturnTrueIfAllCardsAreEqual(): void
     {
         $kata = new Kata();
+        $cards = ['H', 'H', 'H'];
 
-        $response = $kata->validate('H', 'H', 'H');
+        $response = $kata->validate($cards);
 
         $this->assertTrue($response);
     }
@@ -34,8 +35,9 @@ class KataTest extends TestCase
     public function shouldReturnTrueIfAllCardsAreDifferent(): void
     {
         $kata = new Kata();
+        $cards = ['C', 'S', 'H'];
 
-        $response = $kata->validate('C', 'S', 'H');
+        $response = $kata->validate($cards);
 
         $this->assertTrue($response);
     }
@@ -46,8 +48,9 @@ class KataTest extends TestCase
     public function shouldReturnTrueIfTwoAreDifferentAndOneIsJoker(): void
     {
         $kata = new Kata();
+        $cards = ['C', 'S', 'J'];
 
-        $response = $kata->validate('C', 'S', 'J');
+        $response = $kata->validate($cards);
 
         $this->assertTrue($response);
     }
@@ -58,8 +61,9 @@ class KataTest extends TestCase
     public function shouldReturnTrueIfTwoAreEqualAndOneIsJoker(): void
     {
         $kata = new Kata();
+        $cards = ['S', 'S', 'J'];
 
-        $response = $kata->validate('S', 'S', 'J');
+        $response = $kata->validate($cards);
 
         $this->assertTrue($response);
     }
@@ -70,8 +74,9 @@ class KataTest extends TestCase
     public function shouldReturnFalseIfTwoAreEqualAndOneIsCannon(): void
     {
         $kata = new Kata();
+        $cards = ['H', 'H', 'C'];
 
-        $response = $kata->validate('H', 'H', 'C');
+        $response = $kata->validate($cards);
 
         $this->assertFalse($response);
     }
@@ -82,8 +87,9 @@ class KataTest extends TestCase
     public function shouldReturnFalseIfTwoAreEqualAndOneIsHorse(): void
     {
         $kata = new Kata();
+        $cards = ['S', 'S', 'H'];
 
-        $response = $kata->validate('S', 'S', 'H');
+        $response = $kata->validate($cards);
 
         $this->assertFalse($response);
     }

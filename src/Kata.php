@@ -5,36 +5,12 @@ class Kata
 {
     private const JOKER = 'J';
 
-    public function validate(string $card1, string $card2, string $card3): bool
+    public function validate(array $cards): bool
     {
-        if ($this->thereIsJoker($card1, $card2, $card3) && $this->twoAreEqual($card1, $card2, $card3)) {
-            return true;
-        }
+        $numberOfDifferentCards = \count(array_unique($cards));
 
-        if ($this->allAreDifferent($card1, $card2, $card3)) {
-            return true;
-        }
+        if ($numberOfDifferentCards > 2 || $numberOfDifferentCards === 1) return true;
 
-        return $this->allAreEqual($card1, $card2, $card3);
-    }
-
-    private function allAreEqual(string $card1, string $card2, string $card3): bool
-    {
-        return $card1 === $card2 && $card1 === $card3;
-    }
-
-    private function twoAreEqual(string $card1, string $card2, string $card3): bool
-    {
-        return $card1 === $card2 || $card1 === $card3 || $card2 === $card3;
-    }
-
-    private function allAreDifferent(string $card1, string $card2, string $card3): bool
-    {
-        return $card1 !== $card2 && $card1 !== $card3 && $card2 !== $card3;
-    }
-
-    private function thereIsJoker(string $card1, string $card2, string $card3): bool
-    {
-        return $card1 === self::JOKER || $card2 === self::JOKER || $card3 === self::JOKER;
+        return $numberOfDifferentCards === 2 && \in_array(self::JOKER, $cards, true);
     }
 }
